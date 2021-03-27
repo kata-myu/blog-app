@@ -1,0 +1,432 @@
+
+/* ヘッダー */
+header {
+  /* background-color: rgb(214, 214, 247); */
+  background-image: url("jungle");
+  background-size: 210px 1000px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 250px;
+  
+}
+
+.blog-title {
+  font-size: 40px;
+  font-weight: bold;
+  margin-left: 80px;
+  color: black;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 1px 0 0 rgba(255, 255, 255, 0.3),
+    inset -1px 0 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.tags {
+  font-size: 20px;
+  margin-right: 50px;
+  display: flex;
+}
+
+.tag {
+  margin-left: 40px;
+}
+
+.new-blog {
+  margin-right: 15px;
+  color:black;
+  border:solid 1px gray;
+  font-weight: inherit;
+  position: relative;
+  box-shadow: 0 0 3px 0 rgba(0,0,0,.12), 0 2px 3px 0 rgba(0,0,0,.22);
+	transition: 0.3s;
+  border-radius: 5px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 1px 0 0 rgba(255, 255, 255, 0.3),
+    inset -1px 0 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.new-blog:hover {
+  color: blue
+}
+
+
+
+
+/* ヘッダー以下全体 */
+.wrapper {
+  /* height: calc(100vh - 200px); */
+  background-image: url("white");
+  height: 1500px;
+  display: flex;
+}
+
+
+
+/* メイン */
+.main {
+  /* background-color: rgb(225, 225, 245); */
+  width: calc(100vw - 240px);
+  /* overflow: scroll; */
+}
+
+.contents {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.content {
+  background-color: rgb(201, 197, 197);
+  height: 400px;
+  width: 400px;
+  margin: 40px 90px;
+  border: solid 1px rgb(165, 162, 162);
+  position: relative;
+  box-shadow: 0 0 3px 0 rgba(0,0,0,.12), 0 2px 3px 0 rgba(0,0,0,.22);
+	transition: 0.3s;
+  position: relative;
+}
+
+.content-balloon {
+  /*表示位置を指定します*/
+  position: absolute;
+  top: -30px;
+  left: -15px;
+
+  width: 250px;
+
+  /*非表示にしておきます*/
+  display: none;
+  opacity: 0;
+
+  /*表示スタイルを指定します*/
+  padding: 5px;
+  border-radius: 5px;
+  color: black;
+  background-color: rgb(241, 237, 237);
+  /*影をつけて見栄えを良くします*/
+  box-shadow: 1px 1px 2px 1px rgba(7, 29, 226, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 1px 0 0 rgba(255, 255, 255, 0.3),
+    inset -1px 0 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+
+  /*アニメーションを指定します*/
+  animation-duration: 0.5s;
+  animation-name: show-balloon;
+}
+
+.content-balloon::before {
+  /*吹き出し部分の三角形を表示します*/
+  content: "";
+  position: absolute;
+  top: 97%;
+  left: 20px;
+  border: 6px solid transparent;
+  border-top: 6px solid  rgb(241, 237, 237);
+}
+
+.content:hover .content-balloon {
+  display: inline-block;
+  opacity: 1;
+  top: -40px;
+}
+
+@keyframes show-balloon {
+  
+  0% {
+    display: none;
+    opacity: 0;
+    top: -30px;
+  }
+  1% {
+    display: inline-block;
+    opacity: 0;
+    top: -30px;
+  }
+  100% {
+    display: inline-block;
+    opacity: 1;
+    top: -40px;
+  }
+}
+
+/* #hover-iine {
+  font-size: 1em;;
+} */
+
+.content:hover {
+  box-shadow: 0 15px 30px -5px rgba(0,0,0,.15), 0 0 5px rgba(209, 206, 206, 0.9);
+	transform: translateY(-8px);
+}
+
+.blog-image {
+  height: 270px;
+  width: 300px;
+  margin-left: 60px;
+  margin-top: 10px;
+}
+
+h3 {
+  margin-top: 10px;
+  margin-left: 5px;
+  font-size: 20px;
+  color: black;
+}
+
+.date {
+  margin-top: 10px;
+  margin-left: 65%;
+  font-size: 8px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: black;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ページネーション */
+
+li {
+  margin-right: 10px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+.pagination > li > a {
+  border: none;
+  color:black;
+}
+.pagination > li > a:hover {
+  color: rgb(22, 19, 168);
+}
+.pagination > .active > a {
+  color: rgb(98, 95, 233);
+  border-radius: 4px;
+}
+
+/* --ページネーション */
+
+
+
+/* サイドバー */
+.side {
+  background-color: rgb(223, 224, 226);
+  /* background-image: url("white"); */
+  width: 240px;
+}
+
+.introduction {
+  height: 300px;
+  margin-bottom: 70px;
+  /* border: solid 1px rgb(184, 180, 180); */
+}
+
+.user-name {
+  margin-left: 80px;
+}
+
+.introduction-image {
+  height: 120px;
+  width: 120px;
+  margin-left: 70px;
+  margin-top: 30px;
+  border-radius: 50%;
+  box-shadow: var(--box-shadow);
+}
+
+.description {
+  padding-top: 20px;
+  padding-left: 10px;
+}
+
+
+.kensaku {
+  margin-top: 50px;
+  padding-left: 10px;
+}
+
+.search-icon {
+  height: 10px;
+  width: 10px;
+}
+
+.side-btns {
+  margin-top: 50px;
+}
+
+.side-btn {
+  padding: 4px;
+  color: black;
+  border:solid 1px gray;
+  border-style: outset;
+  border-image: initial;
+  background-color: rgb(239, 239, 239);
+  border-radius: 5px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 1px 0 0 rgba(255, 255, 255, 0.3),
+    inset -1px 0 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.side-btn:hover {
+  color: blue;
+}
+
+.btn-margin {
+  margin-top: 8px;
+}
+
+
+.recommended {
+  margin-top: 200px;
+}
+
+.popular-text {
+  margin-bottom: 30px;
+  margin-left: 30px;
+}
+
+.side-content {
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.side-blog-image {
+  height: 150px;
+  width: 150px;
+}
+
+h6 {
+  font-size: 12px;
+}
+
+
+
+/* フッター */
+footer {
+  background-color: rgb(108, 109, 112);
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h4 {
+  font-size: 25px;
+  text-shadow: 1px 2px 3px #535151;
+  color: #faf5f5;
+}
+
+
+
+/* 詳細ページ */
+
+.show-head {
+  padding-top: 5px;
+  text-align: right;
+  background-color: rgb(228, 232, 241);
+}
+
+.show-header-right {
+  margin-right: 20px;
+  color: black;
+  padding: 4px;
+  border:solid 1px gray;
+  border-style: outset;
+  border-image: initial;
+  background-color: rgb(239, 239, 239);
+  border-radius: 5px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 1px 0 0 rgba(255, 255, 255, 0.3),
+    inset -1px 0 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.show-header-right:hover {
+  color: rgb(62, 62, 243);
+}
+
+
+.show-main {
+  background-color: rgb(228, 232, 241);
+}
+
+.show-image {
+  margin-top: 100px;
+  margin-left: 470px;
+
+}
+
+.title-wrapper {
+  margin-top: 50px;
+  font-size: 25px;
+}
+
+.title {
+  margin-left: 100px;
+  font-weight: bold;
+}
+
+.content-wrapper {
+  padding: 50px 30px;
+}
+
+.under-area {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+#iine {
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+#iine:hover {
+  transform: scale(1.5);
+  transition-duration: 0.3s;
+}
+
+.iine-length {
+  font-size: 11px;
+}
+
+
+
+
+
+
+/* 新規投稿ページ */
+
+.preview-image {
+  height: 250px;
+  width: 250px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+
+/* 編集ページ */
+
+.show-wrapper {
+  background-color: rgb(228, 232, 241);
+  height: 100vh;
+}
+
+
+/* 検索ページ */
+

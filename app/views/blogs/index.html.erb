@@ -1,0 +1,75 @@
+<header>
+  <h2 class="blog-title">JavascriptBlog</h2>
+  <% if user_signed_in? %>
+    <div class="tags">
+      <%= link_to "新規投稿", new_blog_path, class: "new-blog" %>
+    </div>
+  <% end %>
+</header>
+<div class="wrapper">
+  <div class="main">
+    <div class="contents">
+      <% @blogs.each do |blog| %>
+        <div class="content">
+          <span class="content-balloon">
+            <%= blog.description %>
+            <div><i id="hover-iine" class="far fa-thumbs-up"></i> <span class="iine-length"><%= blog.likes.length %></span></div>
+          </span>
+          <%= link_to blog_path(blog) do %>
+            <%= image_tag blog.image, class:"blog-image" if blog.image.attached? %>
+            <div>
+              <h3><%= blog.title %></h3>
+              <div class="date"><%= l blog.created_at %></div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <%= paginate @blogs %>
+  </div>
+
+  <div class="side">
+    <div class="introduction">
+      <%= image_tag("cafe.jpeg", class:"introduction-image") %>
+      <div class="user-name">yoritomiくん</div>
+      <div class="description">プログラミングに関する記事を書いています。<br>最初はJavascript中心に書いていく予定。</div>
+    </div>
+    <%= search_form_for @q, url: ransack_search_blogs_path, html: {id: "ransack-search-form"} do |f| %>
+      <p>記事検索</p>
+      <%= f.text_field :title, placeholder: "キーワードから探す" %>
+      <%= f.submit "検索" %>
+    <% end %>
+    <div class="side-btns">
+      <% if user_signed_in? %>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "side-btn" %>
+      <% else %>
+        <div class="btn-margin"><%= link_to 'Googleでログイン', user_google_oauth2_omniauth_authorize_path, method: :post, class: "side-btn"%></div>
+        <div class="btn-margin"><%= link_to "Facebookでログイン", user_facebook_omniauth_authorize_path, method: :post, class: "side-btn" %></div>
+        <div class="btn-margin"><%= link_to "emailでログイン", new_user_session_path, class: "side-btn" %> </div>
+        <div class="btn-margin"><%= link_to "新規登録", new_user_registration_path, class: "side-btn" %></div>
+      <% end %>
+    </div>
+    <div class="recommended">
+      <p class="popular-text">＜人気の記事＞</p>
+      <% @blogs.each do |blog| %>
+        <% if blog.likes.length >= 5 %>
+          <div class="side-content">
+            <%= link_to blog_path(blog) do %>
+              <%= image_tag blog.image, class:"side-blog-image" if blog.image.attached? %>
+              <div>
+                <h6><%= blog.title %></h6>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <h4>JavascriptBlog</h4>
+</footer>
+
+

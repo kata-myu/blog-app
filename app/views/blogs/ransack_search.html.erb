@@ -1,0 +1,47 @@
+<header>
+  <%= link_to "JavascriptBlog", root_path, class: "blog-title" %>
+  <div class="tags">
+    <a href = /blogs/new>
+      <div class="new-blog">新規投稿</div>
+    </a>
+  </div>
+</header>
+<div class="wrapper">
+  <div class="main">
+    <div class="contents">
+      <% @blogs.each do |blog| %>
+        <div class="content">
+          <%= link_to blog_path(blog) do %>
+            <%= image_tag blog.image, class:"blog-image" if blog.image.attached? %>
+            <div>
+              <h3><%= blog.title %></h3>
+              <div class="date"><%= l blog.created_at %></div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    
+    <%= paginate @blogs %>
+   
+  </div>
+
+  <div class="side">
+    <div class="introduction">
+    <%= image_tag("side.png", class:"introduction-image") %>
+      <div class="description">プログラミングに関する記事を書いています。最初はJavascript中心に書いていく予定。</div>
+    </div>
+    <%= search_form_for @q, url: ransack_search_blogs_path, html: {id: "ransack-search-form"} do |f| %>
+      <p>記事検索</p>
+      <%= f.text_field :title, placeholder: "キーワードから探す", value: params[:q]&.dig(:title) %>
+      <%= f.button class: "search-button" do %>
+        <%= image_tag "search.png", class:"search-icon" %>
+      <% end %>
+    <% end %>
+  </div>
+
+</div>
+
+<footer>
+  <h4>JavascriptBlog</h4>
+</footer>

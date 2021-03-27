@@ -1,0 +1,34 @@
+<h2>住所入力</h2>
+
+<%= form_with model: @address, url: users_create_address_path, method: :post, local: true do |f| %>
+  
+
+  <div class="field">
+    <%= f.label :post_code %><br />
+    <%= f.text_field :post_code, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :prefecture_id %><br />
+    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: "----------" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :building %><br />
+    <%= f.text_field :building %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
