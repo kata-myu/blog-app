@@ -365,10 +365,22 @@ h4 {
   background-color: rgb(228, 232, 241);
 }
 
+.image-wrapper {
+  display: flex;
+}
+
 .show-image {
+  height: 400px;
+  width: 500px;
   margin-top: 100px;
   margin-left: 470px;
+}
 
+.show-image2 {
+  height: 200px;
+  width: 300px;
+  margin-top: 100px;
+  margin-left: 100px;
 }
 
 .title-wrapper {
@@ -412,11 +424,92 @@ h4 {
 
 /* 新規投稿ページ */
 
-.preview-image {
+.preview {
   height: 250px;
   width: 250px;
   margin-top: 10px;
   margin-left: 10px;
+}
+
+#preview {
+  display: flex;
+}
+
+.btn-wrapper {
+  display: flex;
+}
+
+.delete-btn {
+  margin-left: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  cursor: pointer;
+  width: 35px;
+  color:black;
+  border:solid 1px gray;
+  font-weight: inherit;
+  position: relative;
+  box-shadow: 0 0 3px 0 rgba(0,0,0,.12), 0 2px 3px 0 rgba(0,0,0,.22);
+	transition: 0.3s;
+  border-radius: 5px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 1px 0 0 rgba(255, 255, 255, 0.3),
+    inset -1px 0 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.delete-btn:hover {
+  color: blue;
+}
+
+.edit-btn {
+  margin-left: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  cursor: pointer;
+  width: 35px;
+  color:black;
+  border:solid 1px gray;
+  font-weight: inherit;
+  position: relative;
+  box-shadow: 0 0 3px 0 rgba(0,0,0,.12), 0 2px 3px 0 rgba(0,0,0,.22);
+	transition: 0.3s;
+  border-radius: 5px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 1px 0 0 rgba(255, 255, 255, 0.3),
+    inset -1px 0 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.edit-btn:hover {
+  color: blue;
+}
+
+#click-file {
+  margin-bottom: 20px;
+  width: 180px;
+  color:black;
+  border:solid 1px gray;
+  font-weight: inherit;
+  position: relative;
+  box-shadow: 0 0 3px 0 rgba(0,0,0,.12), 0 2px 3px 0 rgba(0,0,0,.22);
+	transition: 0.3s;
+  border-radius: 5px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 1px 0 0 rgba(255, 255, 255, 0.3),
+    inset -1px 0 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+}
+
+#click-file:hover {
+  color: blue;
+}
+
+.file-input {
+  display: none;
 }
 
 
@@ -429,4 +522,65 @@ h4 {
 
 
 /* 検索ページ */
+
+
+
+
+
+
+
+
+
+/* レスポンシブ化 */
+
+@media (max-width: 1024px) {
+  p {
+    font-size: 14px;
+  }
+  .side {
+    width: 174px;
+  }
+  .main {
+    width: calc(100vw - 174px);
+  }
+
+  .content {
+    height: 287px;
+    width: 287px;
+    margin: 30px 61px;
+  }
+
+  .blog-image {
+    height: 195px;
+    width: 215px;
+    margin-left: 43px;
+    margin-top: 9px;
+  }
+  
+}
+
+
+@media (max-width: 599px) {
+  p {
+    font-size: 10px;
+  }
+  .side {
+    width: 102px;
+  }
+  .main {
+    width: calc(100vw - 102px);
+  }
+  .content {
+    height: 168px;
+    width: 168px;
+    margin: 18px 36px;
+  }
+
+  .blog-image {
+    height: 114px;
+    width: 126px;
+    margin-left: 25px;
+    margin-top: 5px;
+  }
+}
 

@@ -34,7 +34,22 @@ class BlogsController < ApplicationController
 
   def update
     @blog = Blog.find(params[:id])
+
+    # 複数投稿の編集（削除）の処理
+    if params[:blog_tag][:delete_blob_ids]
+      images = @blog.images
+      images.each do |image|
+        delete_blob_ids = params[:blog_tag][:delete_blob_ids]
+        delete_blob_ids.each do |delete_blob_id|
+          if image.blob.id == delete_blob_id.to_i
+            image.purge
+          end
+        end
+      end
+    end
+
     @blog_tag = BlogTag.new(blog_params)
+    
     if @blog_tag.update(blog_params, @blog)
       redirect_to root_path
     else
@@ -72,6 +87,6 @@ class BlogsController < ApplicationController
 
   private
   def blog_params
-    params.require(:blog_tag).permit(:image, :title, :content, :description, :name).merge(user_id: current_user.id)
+    params.require(:blog_tag).permit(:title, :content, :description, :name, images: []).merge(user_id: current_user.id)
   end
 end

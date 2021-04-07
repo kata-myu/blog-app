@@ -1,6 +1,6 @@
 class BlogTag
   include ActiveModel::Model
-  attr_accessor :title, :content, :image, :description, :name, :id, :created_at, :updated_at, :user_id
+  attr_accessor :title, :content, :images, :description, :name, :id, :created_at, :updated_at, :user_id
 
   # include ActiveModel::Attributes
   # attribute :id, :integer
@@ -11,12 +11,12 @@ class BlogTag
   with_options presence: true do
     validates :title
     validates :content
-    validates :image
+    validates :images
     validates :name
   end
 
   def save
-    blog = Blog.create(title: title, content: content, image: image, description: description, user_id: user_id)
+    blog = Blog.create(title: title, content: content, images: images, description: description, user_id: user_id)
     tag = Tag.where(name: name).first_or_initialize
     tag.save
     # 既存のレコードがある場合は、既存のレコードを反映させる。

@@ -1,38 +1,47 @@
 <div class="show-wrapper">
   <div class="show-head">
-    <%= link_to "Top", root_path, class: "show-header-right" %>
-    <%= link_to "戻る", blog_path(@blog), class: "show-header-right" %>
+      <%= link_to "Top", root_path, class: "show-header-right" %>
+      <%= link_to "戻る", blog_path(@blog), class: "show-header-right" %>
   </div>
 
-  <div class="show-main">
-    <%= form_with model: @blog_tag, url: blog_path(@blog),method: :put, local: true do |f| %>
-      <div class="image-area">
-        <div id="preview">
-        </div>
-        <p>ファイルをアップロード</p>
-        <%= f.file_field :image, id: "blog-image" %>
+  <%= form_with model: @blog_tag, url: blog_path, method: :put, local: true do |f| %>
+    <div class="image-area">
+      <div id="preview">
+        <% @blog.images.each_with_index do |image, i| %>
+          <div class="preview-area" data-index=<%= i %>>
+            <%= image_tag image ,class: "preview", id: "image#{i}" %>
+            <div class="btn-wrapper">
+              <div class="delete-btn" data-index=<%= i %> data-blob=<%= image.blob.id %>>削除</div>
+              <div class="edit-btn" data-index=<%= i %> data-blob=<%= image.blob.id %>>編集</div>
+            </div>
+          </div>
+        <% end %>
       </div>
-      <div class="tag-area">
-        <p>タグ</p>
-        <%= f.text_field :name, id: "blog-tag", autocomplete: "off" %>
-        <div id="result">
-        </div>
+      <p id="click-file" style="cursor: pointer;">ファイルをアップロード</p>
+      <div id="file-btns">
+        <%= f.file_field :images, name: 'blog_tag[images][]', class: "file-input", data:{index: 0} %>
       </div>
-      <div class="title-area">
-        <p>タイトル</p>
-        <%= f.text_field :title, id: "blog-title" %>
+    </div>
+    <div class="tag-area">
+      <p>タグ</p>
+      <%= f.text_field :name, id: "blog-tag", autocomplete: "off" %>
+      <div id="result">
       </div>
-      <div class="content-area">
-      <p>本文</p>
-        <%= f.text_area :content, id: "blog-content" %>
-      </div>
-      <div class="description-area">
-      <p>記事の簡単な説明</p>
-        <%= f.text_area :description, id: "blog-description" %>
-      </div>
-      <div class="submit-area">
-        <%= f.submit "投稿する", id: "blog-submit" %>
-      </div>
-    <% end %>
-  </div>
+    </div>
+    <div class="title-area">
+      <p>タイトル</p>
+      <%= f.text_field :title, id: "blog-title" %>
+    </div>
+    <div class="content-area">
+    <p>本文</p>
+      <%= f.text_area :content, id: "blog-content" %>
+    </div>
+    <div class="description-area">
+    <p>記事の簡単な説明</p>
+      <%= f.text_area :description, id: "blog-description" %>
+    </div>
+    <div class="submit-area">
+      <%= f.submit "投稿する", id: "blog-submit" %>
+    </div>
+  <% end %>
 </div>

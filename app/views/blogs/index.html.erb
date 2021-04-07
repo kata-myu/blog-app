@@ -16,11 +16,9 @@
             <div><i id="hover-iine" class="far fa-thumbs-up"></i> <span class="iine-length"><%= blog.likes.length %></span></div>
           </span>
           <%= link_to blog_path(blog) do %>
-            <%= image_tag blog.image, class:"blog-image" if blog.image.attached? %>
-            <div>
+              <%= image_tag blog.images[0], class:"blog-image" if blog.images.attached? %>
               <h3><%= blog.title %></h3>
               <div class="date"><%= l blog.created_at %></div>
-            </div>
           <% end %>
         </div>
       <% end %>
@@ -55,7 +53,7 @@
         <% if blog.likes.length >= 5 %>
           <div class="side-content">
             <%= link_to blog_path(blog) do %>
-              <%= image_tag blog.image, class:"side-blog-image" if blog.image.attached? %>
+              <%= image_tag blog.images, class:"side-blog-image" if blog.images.attached? %>
               <div>
                 <h6><%= blog.title %></h6>
               </div>

@@ -10,7 +10,13 @@
 
 <div class="show-main">
   <div class="image-wrapper">
-    <div><%= image_tag @blog.image.variant(resize: '500 x 500') , class: "show-image" if @blog.image.attached? %></div>
+    <% if @blog.images.length == 1 %>
+      <div><%= image_tag @blog.images[0] , class: "show-image" if @blog.images.attached? %></div>
+    <% else %>
+      <% @blog.images.each do |image| %>
+        <div><%= image_tag image , class: "show-image2" if @blog.images.attached? %></div>
+      <% end %>
+    <% end %>
   </div>
   <div class="title-wrapper">
     <div class="title"><%=safe_join(@blog.title.split("\n"),tag(:br))%></div>

@@ -7,8 +7,10 @@
     <div class="image-area">
       <div id="preview">
       </div>
-      <p>ファイルをアップロード</p>
-      <%= f.file_field :image, id: "blog-image" %>
+      <p id="click-file" style="cursor: pointer;">ファイルをアップロード</p>
+      <div id="file-btns">
+        <%= f.file_field :images, name: 'blog_tag[images][]', id: "blog-image", data:{index: 0}, style: "display: none;" %>
+      </div>
     </div>
     <div class="tag-area">
       <p>タグ</p>
