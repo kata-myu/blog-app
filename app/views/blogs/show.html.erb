@@ -7,41 +7,44 @@
 </div>
 
 
+<div class="main-wrapper"> 
 
-<div class="show-main">
-  <div class="image-wrapper">
-    <div><%= image_tag @blog.image.variant(resize: '500 x 500') , class: "show-image" if @blog.image.attached? %></div>
-  </div>
-  <div class="title-wrapper">
-    <div class="title"><%=safe_join(@blog.title.split("\n"),tag(:br))%></div>
-  </div>
-  <div class="content-wrapper">
-    <div><%=safe_join(@blog.content.split("\n"),tag(:br))%></div>
-  </div>
-</div>
-
-<div class="under-area">
-  <div class="comment-wrapper">
-    <%= form_with url: blog_comments_path(@blog), method: :post, id: "comment-form" do |f| %>
-      <%= f.text_field :comment, id: "comment-field" %>
-      <%= f.button type: 'submit', class: "comment-btn" do %>
-        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
-      <% end %>
-    <% end %>
-    <div id="comment-area">
-      <% @comment.each do |comment| %>
-        <p><%= comment.comment %></p>
-      <% end %>
+  <div class="show-main">
+    <div class="image-wrapper">
+      <div><%= image_tag @blog.image.variant(resize: '500 x 500') , class: "show-image" if @blog.image.attached? %></div>
+    </div>
+    <div class="title-wrapper">
+      <div class="title"><%=safe_join(@blog.title.split("\n"),tag(:br))%></div>
+    </div>
+    <div class="content-wrapper">
+      <div><%=safe_join(@blog.content.split("\n"),tag(:br))%></div>
     </div>
   </div>
 
-  <div id="like-wrapper" data-index="<%= @blog.id %>">
-      <span >
-        <i id="iine" class="far fa-thumbs-up"></i>
-      </span>
-      <span id="likes-count"><%= @blog.likes.count %></span>
-      <%# 非同期ではremote: trueが必須 %>
+  <div class="under-area">
+    <div class="comment-wrapper">
+      <%= form_with url: blog_comments_path(@blog), method: :post, id: "comment-form" do |f| %>
+        <%= f.text_field :comment, id: "comment-field" %>
+        <%= f.button type: 'submit', class: "comment-btn" do %>
+          <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"20"%>
+          <span>コメントする<span>
+        <% end %>
+      <% end %>
+      <div id="comment-area">
+        <% @comment.each do |comment| %>
+          <p class="comment"><%= comment.comment %></p>
+        <% end %>
+      </div>
+    </div>
+
+    <div id="like-wrapper" data-index="<%= @blog.id %>">
+        <span >
+          <i id="iine" class="far fa-thumbs-up"></i>
+        </span>
+        <span id="likes-count"><%= @blog.likes.count %></span>
+        <%# 非同期ではremote: trueが必須 %>
+    </div>
+
   </div>
 
 </div>

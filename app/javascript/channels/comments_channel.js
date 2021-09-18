@@ -13,7 +13,7 @@ consumer.subscriptions.create("CommentsChannel", {
 
   received(data) {
     // Called when there's incoming data on the websocket for this channel
-    const html = `<p>${data.comment.comment}</p>`
+    const html = `<p class="comment">${data.comment.comment}</p>`
     const commentArea = document.getElementById("comment-area");
     commentArea.insertAdjacentHTML('afterbegin', html);
     const commentField = document.getElementById("comment-field");
