@@ -1,35 +1,37 @@
-<div class="show-wrapper">
+<div class="new-wrapper">
   <div class="show-head">
       <%= link_to "Top", root_path, class: "show-header-right" %>
   </div>
 
-  <%= form_with model: @blog_tag, url: blogs_path, method: :post, local: true do |f| %>
-    <div class="image-area">
-      <div id="preview">
+  <div class="form-wrapper">
+    <%= form_with model: @blog_tag, url: blogs_path, method: :post, class: "new-form", local: true do |f| %>
+      <div class="image-area">
+        <%= f.label :image, for: "blog-image", value: "ファイルをアップロード", class: "image-label" %>
+        <%= f.file_field :image, id: "blog-image", style: "display: none;" %>
       </div>
-      <p>ファイルをアップロード</p>
-      <%= f.file_field :image, id: "blog-image" %>
-    </div>
-    <div class="tag-area">
-      <p>タグ</p>
-      <%= f.text_field :name, id: "blog-tag", autocomplete: "off" %>
-      <div id="result">
+      <div class="tag-area">
+        <p class="input-head">タグ</p>
+        <%= f.text_field :name, id: "blog-tag", autocomplete: "off" %>
+        <div id="result">
+        </div>
       </div>
+      <div class="title-area">
+        <p class="input-head">タイトル</p>
+        <%= f.text_field :title, id: "blog-title" %>
+      </div>
+      <div class="content-area">
+      <p class="input-head">本文</p>
+        <%= f.text_area :content, id: "blog-content" %>
+      </div>
+      <div class="description-area">
+      <p class="input-head">記事の簡単な説明</p>
+        <%= f.text_area :description, id: "blog-description" %>
+      </div>
+      <div class="submit-area">
+        <%= f.submit "投稿する", id: "blog-submit" %>
+      </div>
+    <% end %>
+    <div id="preview">
     </div>
-    <div class="title-area">
-      <p>タイトル</p>
-      <%= f.text_field :title, id: "blog-title" %>
-    </div>
-    <div class="content-area">
-    <p>本文</p>
-      <%= f.text_area :content, id: "blog-content" %>
-    </div>
-    <div class="description-area">
-    <p>記事の簡単な説明</p>
-      <%= f.text_area :description, id: "blog-description" %>
-    </div>
-    <div class="submit-area">
-      <%= f.submit "投稿する", id: "blog-submit" %>
-    </div>
-  <% end %>
+  </div>
 </div>
